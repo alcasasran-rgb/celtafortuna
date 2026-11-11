@@ -47,7 +47,7 @@ var G = {
   RESPONSABILIDAD: ['Mérito del rival', 'Portero', 'Defensa', 'Colectiva'],
   ACCION:          ['Estirada', 'Blocaje', 'Despeje', 'Salida aérea',
                     'Salida al pie / 1x1', 'Achique', 'Sin opción de intervenir'],
-  POSICION:        ['Correcta', 'Adelantado', 'Atrasado', 'Perfil incorrecto',
+  POSICION:        ['Correcta', 'Incorrecta', 'Adelantado', 'Atrasado', 'Perfil incorrecto',
                     'Fuera de la portería'],
   PIE:             ['Pie natural', 'Pie cambiado'],
   ACIERTO:         ['Colocación correcta', 'Buena lectura', 'Salida a tiempo', 'Reducción del ángulo',
@@ -728,7 +728,8 @@ function vistaFormulario(app, id) {
     g = state.goles.filter(function (x) { return x.id === id; })[0];
     if (!g) { navegar('#/'); return; }
     g = JSON.parse(JSON.stringify(g));
-    if (!g.errores) g.errores = [];
+    /* Registros antiguos: errores/aciertos podían ser un texto o faltar. */
+    ['errores', 'aciertos'].forEach(function (k) { if (typeof g[k] === 'string') g[k] = g[k] ? [g[k]] : []; if (!Array.isArray(g[k])) g[k] = []; });
     if (!g.aciertos) g.aciertos = [];
   } else {
     g = borradorNuevo();
