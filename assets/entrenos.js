@@ -251,7 +251,7 @@ function vistaFormulario(app, id) {
       if (campo === 'objetivos') { if (e.objetivos.indexOf(e.principal) < 0) e.principal = ''; $('#zona-principal', form).innerHTML = htmlPrincipal(e); }
       return;
     }
-    e[campo] = valor; A.marcarChip(form, campo, valor);
+    e[campo] = e[campo] === valor ? '' : valor; valor = e[campo]; A.marcarChip(form, campo, valor);
   });
   function anadirObjetivo() {
     var inp = $('#in-objetivo', form), v = (inp.value || '').trim();

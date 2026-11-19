@@ -927,9 +927,9 @@ function montarFormulario(app, g, editando) {
       });
       return;
     }
-    /* Un chip simple no se desmarca al volver a tocarlo: con los datos
-       del partido prerrellenados, un toque de más borraba el valor. */
-    g[campo] = valor;
+    /* Volver a tocar el chip marcado lo desmarca (el campo queda vacío). */
+    g[campo] = g[campo] === valor ? '' : valor;
+    valor = g[campo];
     marcarChip(form, campo, g[campo]);
     if (campo === 'tipo') { g.subtipo = ''; g.pie = ''; $('#zona-subtipo').innerHTML = htmlSubtipo(g); }
     if (campo === 'equipo') $('#zona-jugadores', form).innerHTML = htmlJugadores(g);

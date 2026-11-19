@@ -196,7 +196,7 @@ function vistaFormulario(app, id) {
     var b = e.target.closest('[data-chip]'); if (!b) return;
     e.preventDefault();
     var campo = b.getAttribute('data-chip'), valor = b.getAttribute('data-valor');
-    p[campo] = valor; A.marcarChip(form, campo, valor);
+    p[campo] = p[campo] === valor ? '' : valor; valor = p[campo]; A.marcarChip(form, campo, valor);
     if (campo === 'resultado' && valor !== 'Fuera' && typeof p.zonaPorteria === 'string' && p.zonaPorteria) {
       p.zonaPorteria = ''; $$('#zona-porteria [data-zona]', form).forEach(function (q) { q.classList.remove('sel'); }); $('#txt-zona-porteria').textContent = '—';
     }

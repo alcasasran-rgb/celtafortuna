@@ -368,7 +368,7 @@ function vistaRemate(app, id, equipo, jugadorId) {
     if (!b) return;
     e.preventDefault();
     var campo = b.getAttribute('data-chip'), valor = b.getAttribute('data-valor');
-    g[campo] = valor;
+    g[campo] = g[campo] === valor ? '' : valor; valor = g[campo];
     A.marcarChip(form, campo, valor);
     if (campo === 'tipo') { g.subtipo = ''; g.pie = ''; $('#zona-subtipo', form).innerHTML = htmlSubtipo(g); }
     if (campo === 'resultado' && valor !== 'Fuera' && typeof g.zonaPorteria === 'string' && g.zonaPorteria) {
